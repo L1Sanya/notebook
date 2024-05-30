@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\NotebookController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +18,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::prefix('v1')->group(function () {
+    Route::get('notebook', [NotebookController::class, 'index']);
+    Route::post('notebook', [NotebookController::class, 'create']);
+    Route::get('notebook/{id}', [NotebookController::class, 'getOneById']);
+    Route::post('notebook/{id}', [NotebookController::class, 'update']);
+    Route::delete('notebook/{id}', [NotebookController::class, 'delete']);
 });
