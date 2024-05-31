@@ -1,0 +1,506 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My Notebooks",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/": {},
+        "/api/v1/notebook/photo": {
+            "post": {
+                "tags": [
+                    "Notebook"
+                ],
+                "summary": "Upload photo",
+                "operationId": "e2734265e62172ad15e5f3c0f879b04a",
+                "responses": {
+                    "201": {
+                        "description": "Photo uploaded successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "path": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "An error occurred while uploading the photo",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/notebook": {
+            "get": {
+                "tags": [
+                    "Notebook"
+                ],
+                "summary": "Get all notebooks",
+                "operationId": "ddadc481df9b4820c25eace6094daed0",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer"
+                                            },
+                                            "last_name": {
+                                                "type": "string"
+                                            },
+                                            "first_name": {
+                                                "type": "string"
+                                            },
+                                            "middle_name": {
+                                                "type": "string"
+                                            },
+                                            "company_name": {
+                                                "type": "string",
+                                                "nullable": true
+                                            },
+                                            "phone": {
+                                                "type": "string",
+                                                "nullable": true
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "birth_date": {
+                                                "type": "string",
+                                                "format": "date",
+                                                "nullable": true
+                                            },
+                                            "image_id": {
+                                                "type": "integer",
+                                                "nullable": true
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "format": "date-time"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "format": "date-time"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Notebook"
+                ],
+                "summary": "Create a notebook",
+                "operationId": "38b5c77e4129659b839f7feb26c20e9d",
+                "requestBody": {
+                    "description": "Notebook data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "last_name": {
+                                        "type": "string",
+                                        "example": "Doe"
+                                    },
+                                    "first_name": {
+                                        "type": "string",
+                                        "example": "John"
+                                    },
+                                    "middle_name": {
+                                        "type": "string",
+                                        "example": "Smith"
+                                    },
+                                    "company_name": {
+                                        "type": "string",
+                                        "example": "ABC Inc.",
+                                        "nullable": true
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "1234567890",
+                                        "nullable": true
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "john.doe@example.com"
+                                    },
+                                    "birth_date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "1990-01-01",
+                                        "nullable": true
+                                    },
+                                    "image_id": {
+                                        "type": "integer",
+                                        "example": null,
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Notebook created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "last_name": {
+                                            "type": "string"
+                                        },
+                                        "first_name": {
+                                            "type": "string"
+                                        },
+                                        "middle_name": {
+                                            "type": "string"
+                                        },
+                                        "company_name": {
+                                            "type": "string",
+                                            "nullable": true
+                                        },
+                                        "phone": {
+                                            "type": "string",
+                                            "nullable": true
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "birth_date": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "nullable": true
+                                        },
+                                        "image_id": {
+                                            "type": "integer",
+                                            "nullable": true
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "An error occurred while creating the notebook",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/notebook/{id}": {
+            "get": {
+                "tags": [
+                    "Notebook"
+                ],
+                "summary": "Get a notebook by id",
+                "operationId": "ababb837af40cb1c163645a12fe617e5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of the notebook",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "last_name": {
+                                            "type": "string"
+                                        },
+                                        "first_name": {
+                                            "type": "string"
+                                        },
+                                        "middle_name": {
+                                            "type": "string"
+                                        },
+                                        "company_name": {
+                                            "type": "string",
+                                            "nullable": true
+                                        },
+                                        "phone": {
+                                            "type": "string",
+                                            "nullable": true
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "birth_date": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "nullable": true
+                                        },
+                                        "image_id": {
+                                            "type": "integer",
+                                            "nullable": true
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Notebook not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Notebook"
+                ],
+                "summary": "Update a notebook",
+                "operationId": "bb1156cfa6eb1f8628196669925787c7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of the notebook",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Data to update the notebook",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "last_name": {
+                                        "type": "string",
+                                        "example": "Doe"
+                                    },
+                                    "first_name": {
+                                        "type": "string",
+                                        "example": "John"
+                                    },
+                                    "middle_name": {
+                                        "type": "string",
+                                        "example": "Alex"
+                                    },
+                                    "company_name": {
+                                        "type": "string",
+                                        "example": "CDA",
+                                        "nullable": true
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "+7 962 713 9111",
+                                        "nullable": true
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "john@example.com"
+                                    },
+                                    "birth_date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "1990-01-01",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Notebook updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "last_name": {
+                                            "type": "string"
+                                        },
+                                        "first_name": {
+                                            "type": "string"
+                                        },
+                                        "middle_name": {
+                                            "type": "string"
+                                        },
+                                        "company_name": {
+                                            "type": "string",
+                                            "nullable": true
+                                        },
+                                        "phone": {
+                                            "type": "string",
+                                            "nullable": true
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "format": "email"
+                                        },
+                                        "birth_date": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "nullable": true
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Notebook not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Notebook"
+                ],
+                "summary": "Delete a notebook",
+                "description": "Delete a notebook by ID",
+                "operationId": "d64f43d89a487257af2cb828a9a4b447",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the notebook to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Notebook deleted successfully"
+                    },
+                    "404": {
+                        "description": "Notebook not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

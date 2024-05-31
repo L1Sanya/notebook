@@ -3,26 +3,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UploadRequest;
+use App\Service\ImageUploadService;
 use Illuminate\Http\Request;
 use App\Models\Image;
 use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
-    public function upload(Request $request)
+    protected $imageUploadService;
+
+    public function __construct(ImageUploadService $imageUploadService)
     {
-        $request->validate([
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+        $this->imageUploadService = $imageUploadService;
+    }
 
+    public function upload(UploadRequest $request)
+    {
         if ($request->hasFile('photo')) {
-            $filePath = $request->file('photo')->store('images', 'public');
-
-            $image = new Image();
-            $image->path = $filePath;
-            $image->save();
-
-            return response()->json(['message' => 'Image uploaded successfully', 'path' => $filePath], 200);
+            $image = $this->imageUploadService->upload($request->file('photo'));
+            return response()->json($image);
         }
 
         return response()->json(['message' => 'Image upload failed'], 500);
