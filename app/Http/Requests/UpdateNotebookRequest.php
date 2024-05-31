@@ -32,7 +32,7 @@ class UpdateNotebookRequest extends FormRequest
             'phone'        => 'string|nullable|unique:notebooks',
             'email'        => 'email|nullable|unique:notebooks',
             'birth_date'   => 'date|nullable',
-            'image_id'     => 'int|nullable',
+            'image_id'     => 'int|nullable|exists:images,id',
         ];
     }
 

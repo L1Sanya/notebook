@@ -32,7 +32,7 @@ class CreateNotebookRequest extends FormRequest
             'phone'        => 'nullable|string|max:20',
             'email'        => 'nullable|email|max:255',
             'birth_date'   => 'nullable|date',
-            'image_id'     => 'nullable|int'
+            'image_id'     => 'nullable|int|exists:images,id',
         ];
     }
 
