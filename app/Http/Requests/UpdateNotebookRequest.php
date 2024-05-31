@@ -26,8 +26,8 @@ class UpdateNotebookRequest extends FormRequest
     {
         return [
             'last_name'    => 'string|nullable',
-            'name'   => 'string|nullable',
-            'surname'  => 'string|nullable',
+            'first_name'   => 'string|nullable',
+            'middle_name'  => 'string|nullable',
             'company_name' => 'string|nullable',
             'phone'        => 'string|nullable|unique:notebooks',
             'email'        => 'email|nullable|unique:notebooks',

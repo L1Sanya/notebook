@@ -14,30 +14,30 @@ use Throwable;
 
 class NotebookController extends Controller
 {
-    public function index() : JsonResponse
+    public function getAll() : JsonResponse
     {
-        $notebooks = Notebook::paginate(10);
+        $notebooks = Notebook::query()->paginate(10);
         return response()->json($notebooks);
     }
 
-    public function create(CreateNotebookRequest $request): JsonResponse
+    public function store(CreateNotebookRequest $request): JsonResponse
     {
         $validatedData = $request->validated();
 
         try {
-            $notebook = Notebook::create($validatedData);
+            $notebook = Notebook::query()->create($validatedData);
 
             return response()->json($notebook);
         } catch (Throwable $exception) {
             Log::info($exception->getMessage());
-            return response()->json(['error' => 'An error occurred while creating the notebook'], 400);
+            return response()->json(['error' => 'An error occurred while creating the notebook'], 500);
         }
     }
 
-    public function getOneById(int $id): JsonResponse
+    public function getById(int $id): JsonResponse
     {
         try {
-            $notebook = Notebook::findOrFail($id);
+            $notebook = Notebook::query()->findOrFail($id);
 
             return response()->json($notebook);
         } catch (Throwable) {
@@ -49,7 +49,7 @@ class NotebookController extends Controller
     {
         $validatedData = $request->validated();
 
-        $notebook = Notebook::find($id);
+        $notebook = Notebook::query()->find($id);
 
         if (!$notebook) {
             return response()->json(['error' => 'Notebook not found'], 404);
@@ -60,9 +60,9 @@ class NotebookController extends Controller
         return response()->json($notebook);
     }
 
-    public function delete(int $id): Application|Response|JsonResponse|\Illuminate\Contracts\Foundation\Application|ResponseFactory
+    public function destroy(int $id): Application|Response|JsonResponse|\Illuminate\Contracts\Foundation\Application|ResponseFactory
     {
-        $notebook = Notebook::find($id);
+        $notebook = Notebook::query()->find($id);
 
         if (!$notebook) {
             return response()->json(['error' => 'Notebook not found'], 404);

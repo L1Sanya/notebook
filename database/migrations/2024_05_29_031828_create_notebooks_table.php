@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('notebooks', function (Blueprint $table) {
             $table->id();
             $table->string('last_name');
-            $table->string('name');
-            $table->string('surname')->nullable();
+            $table->string('first_name');
+            $table->string('middle_name')->nullable();
             $table->string('company_name')->nullable();
             $table->string('phone')->nullable()->unique();
-            $table->string('email')->unique();
+            $table->string('email')->nullable()->unique();
             $table->date('birth_date')->nullable();
             $table->foreignId('image_id')->nullable()->constrained('images')->onDelete('cascade');
             $table->timestamps();

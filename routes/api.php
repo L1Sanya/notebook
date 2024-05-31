@@ -21,9 +21,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('v1')->group(function () {
-    Route::get('notebook', [NotebookController::class, 'index']);
-    Route::post('notebook', [NotebookController::class, 'create']);
-    Route::get('notebook/{id}', [NotebookController::class, 'getOneById']);
+    Route::post('notebook/photo', [ImageController::class, 'upload']);
+    Route::get('notebook', [NotebookController::class, 'getAll']);
+    Route::post('notebook', [NotebookController::class, 'store']);
+    Route::get('notebook/{id}', [NotebookController::class, 'getById']);
     Route::post('notebook/{id}', [NotebookController::class, 'update']);
-    Route::delete('notebook/{id}', [NotebookController::class, 'delete']);
+    Route::delete('notebook/{id}', [NotebookController::class, 'destroy']);
 });

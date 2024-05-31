@@ -20,9 +20,9 @@ class NotebookFactory extends Factory
     public function definition(): array
     {
         return [
-            'last_name' => $this->faker->lastName,
-            'name' => $this->faker->firstName,
-            'surname' => $this->faker->lastName,
+            'last_name'    => $this->faker->lastName,
+            'first_name'   => $this->faker->firstName,
+            'middle_name'  => $this->faker->lastName,
             'company_name' => $this->faker->company,
             'phone'        => $this->faker->unique()->phoneNumber,
             'email'        => $this->faker->unique()->safeEmail,

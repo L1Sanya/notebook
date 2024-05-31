@@ -25,23 +25,30 @@ class CreateNotebookRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'last_name' => 'required|string|max:255',
-            'name' => 'required|string|max:255',
-            'surname' => 'required|string|max:255',
+            'last_name'    => 'required|string|max:255',
+            'first_name'   => 'required|string|max:255',
+            'middle_name'  => 'nullable|string|max:255',
             'company_name' => 'nullable|string|max:255',
-            'phone' => 'required|string|max:20',
-            'email' => 'required|email|max:255',
-            'birth_date' => 'nullable|date',
+            'phone'        => 'nullable|string|max:20',
+            'email'        => 'nullable|email|max:255',
+            'birth_date'   => 'nullable|date',
             'image_id'     => 'nullable|int'
         ];
     }
 
     public function failedValidation(Validator $validator)
     {
-        throw new HttpResponseException(response()->json([
-            'success'   => false,
-            'message'   => 'Validation errors',
-            'data'      => $validator->errors()
-        ]));
+
+        $response = response(status: 400);
+        try {
+            $response->setContent([
+                'success'   => false,
+                'message'   => 'Validation errors',
+                'data'      => $validator->errors()
+            ]);
+        } catch (\Throwable) {
+        }
+        throw new HttpResponseException($response);
     }
+
 }
