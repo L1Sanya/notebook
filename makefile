@@ -23,3 +23,11 @@ ps:
 db:
 	sudo docker-compose exec db bash
 
+.PHONY: migrate
+migrate:
+	sudo docker-compose exec php php artisan migrate
+
+.PHONY: seed
+seed:
+	sudo docker-compose exec php php artisan db:seed
+

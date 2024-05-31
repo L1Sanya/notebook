@@ -12,7 +12,8 @@
 3. Установите библиотеки и создайте таблицы в базе данных, заполните их данными
 
 ``` composer install ``` <br>
-```php artisan make:migrate && php artisan db:seed DatabaseSeeder```
+```make migrate```<br>
+```make seed```
 
 
 <h2>API:</h2>
